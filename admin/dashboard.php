@@ -60,7 +60,7 @@ include "header.php";
                                         <div class="col-6">
                                             <div class="text-right">
                                                 <h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
-                                                <p class="text-muted mb-1 text-truncate">Online Users</p>
+                                                <p class="text-muted mb-1 text-truncate"><a href="./user_activity.php">Online Users</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -245,7 +245,7 @@ include "header.php";
                                         <div class="col-6">
                                             <div class="text-right">
                                                 <h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
-                                                <p class="text-muted mb-1 text-truncate">Online Users</p>
+                                                <p class="text-muted mb-1 text-truncate"><a href="./user_activity.php">Online Users</a></p>
                                             </div>
                                         </div>
                                     </div>
