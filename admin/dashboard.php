@@ -104,7 +104,7 @@ include "header.php";
                             </div> <!-- end col -->
                             
                             <div class="col-md-6 col-xl-3">
-                                <div class="card-box active-streams">
+                                <div class="card-box total-active-streams">
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="avatar-sm bg-soft-purple rounded">
@@ -324,14 +324,17 @@ include "header.php";
                                 <div class="card-box active-streams">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="avatar-sm bg-soft-purple rounded">
-                                                <i class="fe-arrow-up-right avatar-title font-22 text-purple"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
                                             <div class="text-right">
                                                 <h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
-                                                <p class="text-muted mb-1 text-truncate"><a href="./streams.php">Active Streams</a></p>
+                                                <p class="text-muted mb-1 text-truncate"><a href="./streams.php">Active Live Streams</a></p>
+                                            </div>
+                                            <div class="text-right">
+                                                <h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
+                                                <p class="text-muted mb-1 text-truncate"><a href="./streams.php">Active Movie Streams</a></p>
+                                            </div>
+                                            <div class="text-right">
+                                                <h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
+                                                <p class="text-muted mb-1 text-truncate"><a href="./streams.php">Active Series Streams</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -505,11 +508,11 @@ include "header.php";
                 // Total Active Streams
                 var rCapacity = Math.ceil((data.total_active_streams / data.total_offline_streams) * 100);
                 if (isNaN(rCapacity)) { rCapacity = 0; }
-                $(".active-streams .entry").html($.number(data.total_active_streams, 0));
-                $(".active-streams .entry-percentage").html($.number(data.total_streams, 0));
-                $(".active-streams .progress-bar").prop("aria-valuenow", rCapacity);
-                $(".active-streams .progress-bar").css("width", rCapacity.toString() + "%");
-                $(".active-streams .sr-only").html(rCapacity.toString() + "%");
+                $(".total-active-streams .entry").html($.number(data.total_active_streams, 0));
+                $(".total-active-streams .entry-percentage").html($.number(data.total_streams, 0));
+                $(".total-active-streams .progress-bar").prop("aria-valuenow", rCapacity);
+                $(".total-active-streams .progress-bar").css("width", rCapacity.toString() + "%");
+                $(".total-active-streams .sr-only").html(rCapacity.toString() + "%");
                 // Active Live Streams
                 var rCapacity = Math.ceil((data.active_live_streams / data.offline_live_streams) * 100);
                 if (isNaN(rCapacity)) { rCapacity = 0; }
