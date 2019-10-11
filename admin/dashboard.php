@@ -506,7 +506,7 @@ include "header.php";
                 $(".output-flow .progress-bar").css("width", rCapacity.toString() + "%");
                 $(".output-flow .sr-only").html(rCapacity.toString() + "%");
                 // Total Active Streams
-                var rCapacity = Math.ceil((data.total_active_streams / data.total_offline_streams) * 100);
+                var rCapacity = Math.ceil((data.total_streams / data.total_active_streams) * 100);
                 if (isNaN(rCapacity)) { rCapacity = 0; }
                 $(".total-active-streams .entry").html($.number(data.total_active_streams, 0));
                 $(".total-active-streams .entry-percentage").html($.number(data.total_streams, 0));
@@ -514,13 +514,29 @@ include "header.php";
                 $(".total-active-streams .progress-bar").css("width", rCapacity.toString() + "%");
                 $(".total-active-streams .sr-only").html(rCapacity.toString() + "%");
                 // Active Live Streams
-                var rCapacity = Math.ceil((data.active_live_streams / data.offline_live_streams) * 100);
+                var rCapacity = Math.ceil((data.total_live_streams / data.active_live_streams) * 100);
                 if (isNaN(rCapacity)) { rCapacity = 0; }
-                $(".active-streams .entry").html($.number(data.active_live_streams, 0));
-                $(".active-streams .entry-percentage").html($.number(data.offline_live_streams, 0));
-                $(".active-streams .progress-bar").prop("aria-valuenow", rCapacity);
-                $(".active-streams .progress-bar").css("width", rCapacity.toString() + "%");
-                $(".active-streams .sr-only").html(rCapacity.toString() + "%");
+                $(".active-live-streams .entry").html($.number(data.active_live_streams, 0));
+                $(".active-live-streams .entry-percentage").html($.number(data.offline_live_streams, 0));
+                $(".active-live-streams .progress-bar").prop("aria-valuenow", rCapacity);
+                $(".active-live-streams .progress-bar").css("width", rCapacity.toString() + "%");
+                $(".active-live-streams .sr-only").html(rCapacity.toString() + "%");
+                // Active Movie Streams
+                var rCapacity = Math.ceil((data.total_movies_streams / data.active_movies_streams) * 100);
+                if (isNaN(rCapacity)) { rCapacity = 0; }
+                $(".active-movie-streams .entry").html($.number(data.active_movie_streams, 0));
+                $(".active-movie-streams .entry-percentage").html($.number(data.offline_movie_streams, 0));
+                $(".active-movie-streams .progress-bar").prop("aria-valuenow", rCapacity);
+                $(".active-movie-streams .progress-bar").css("width", rCapacity.toString() + "%");
+                $(".active-movie-streams .sr-only").html(rCapacity.toString() + "%");
+                // Active Series Streams
+                var rCapacity = Math.ceil((data.total_series_streams / data.active_series_streams) * 100);
+                if (isNaN(rCapacity)) { rCapacity = 0; }
+                $(".active-series-streams .entry").html($.number(data.active_series_streams, 0));
+                $(".active-series-streams .entry-percentage").html($.number(data.offline_series_streams, 0));
+                $(".active-series-streams .progress-bar").prop("aria-valuenow", rCapacity);
+                $(".active-series-streams .progress-bar").css("width", rCapacity.toString() + "%");
+                $(".active-series-streams .sr-only").html(rCapacity.toString() + "%");
                 // CPU Usage
                 $(".cpu-usage .entry").html(data.cpu);
                 $(".cpu-usage .entry-percentage").html(data.cpu.toString() + "%");
