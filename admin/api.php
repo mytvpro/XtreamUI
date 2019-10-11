@@ -159,7 +159,7 @@ if (isset($_GET["action"])) {
         echo json_encode(Array("result" => True, "data" => $rStreams));
         exit;
     } else if ($_GET["action"] == "stats") {
-        $return = Array("cpu" => 0, "mem" => 0, "uptime" => "--", "total_running_streams" => 0, "bytes_sent" => 0, "bytes_received" => 0);
+        $return = Array("cpu" => 0, "mem" => 0, "uptime" => "--", "active_streams" => 0, "bytes_sent" => 0, "bytes_received" => 0);
         if (isset($_GET["server_id"])) {
             $rServerID = intval($_GET["server_id"]);
             $rWatchDog = json_decode($rServers[$rServerID]["watchdog_data"], True);
