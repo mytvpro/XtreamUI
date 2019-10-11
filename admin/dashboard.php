@@ -114,7 +114,15 @@ include "header.php";
                                         <div class="col-6">
                                             <div class="text-right">
                                                 <h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
-                                                <p class="text-muted mb-1 text-truncate"><a href="./streams.php">Active Streams</a></p>
+                                                <p class="text-muted mb-1 text-truncate"><a href="./streams.php">Active Live Streams</a></p>
+                                            </div>
+                                            <div class="text-right">
+                                                <h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
+                                                <p class="text-muted mb-1 text-truncate"><a href="./streams.php">Active Movie Streams</a></p>
+                                            </div>
+                                            <div class="text-right">
+                                                <h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
+                                                <p class="text-muted mb-1 text-truncate"><a href="./streams.php">Active Series Streams</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -494,11 +502,19 @@ include "header.php";
                 $(".output-flow .progress-bar").prop("aria-valuenow", rCapacity);
                 $(".output-flow .progress-bar").css("width", rCapacity.toString() + "%");
                 $(".output-flow .sr-only").html(rCapacity.toString() + "%");
-                // Active Streams
-                var rCapacity = Math.ceil((data.active_streams / data.offline_streams) * 100);
+                // Total Active Streams
+                var rCapacity = Math.ceil((data.total_active_streams / data.total_offline_streams) * 100);
                 if (isNaN(rCapacity)) { rCapacity = 0; }
-                $(".active-streams .entry").html($.number(data.active_streams, 0));
-                $(".active-streams .entry-percentage").html($.number(data.offline_streams, 0));
+                $(".active-streams .entry").html($.number(data.total_active_streams, 0));
+                $(".active-streams .entry-percentage").html($.number(data.total_streams, 0));
+                $(".active-streams .progress-bar").prop("aria-valuenow", rCapacity);
+                $(".active-streams .progress-bar").css("width", rCapacity.toString() + "%");
+                $(".active-streams .sr-only").html(rCapacity.toString() + "%");
+                // Active Live Streams
+                var rCapacity = Math.ceil((data.active_live_streams / data.offline_live_streams) * 100);
+                if (isNaN(rCapacity)) { rCapacity = 0; }
+                $(".active-streams .entry").html($.number(data.active_live_streams, 0));
+                $(".active-streams .entry-percentage").html($.number(data.offline_live_streams, 0));
                 $(".active-streams .progress-bar").prop("aria-valuenow", rCapacity);
                 $(".active-streams .progress-bar").css("width", rCapacity.toString() + "%");
                 $(".active-streams .sr-only").html(rCapacity.toString() + "%");
