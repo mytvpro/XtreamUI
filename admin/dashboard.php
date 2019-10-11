@@ -324,22 +324,22 @@ include "header.php";
                                 <div class="card-box">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="text-right">
-                                                <h3 class="text-dark my-1"><span data-plugin="counterup" class="active-live-streams entry">0</span></h3>
+                                            <div class="text-right active-live-streams">
+                                                <h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
                                                 <p class="text-muted mb-1 text-truncate"><a href="./streams.php">Active Live Streams</a></p>
                                             </div>
-                                            <div class="text-right">
-                                                <h3 class="text-dark my-1"><span data-plugin="counterup" class="active-movie-streams entry">0</span></h3>
+                                            <div class="text-right active-movie-streams">
+                                                <h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
                                                 <p class="text-muted mb-1 text-truncate"><a href="./streams.php">Active Movie Streams</a></p>
                                             </div>
-                                            <div class="text-right">
-                                                <h3 class="text-dark my-1"><span data-plugin="counterup" class="active-series-streams entry">0</span></h3>
+                                            <div class="text-right active-series-streams">
+                                                <h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
                                                 <p class="text-muted mb-1 text-truncate"><a href="./streams.php">Active Series Streams</a></p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mt-3">
-                                        <h6 class="text-uppercase"><a href="./streams/php">Total Active Streams</a> <span class="float-right total-active-streams entry-percentage">0</span></h6>
+                                    <div class="mt-3 total-active-streams">
+                                        <h6 class="text-uppercase"><a href="./streams/php">Total Active Streams</a> <span class="float-right entry-percentage">0</span></h6>
                                         <div class="progress progress-sm m-0">
                                             <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                                                 <span class="sr-only">0%</span>
