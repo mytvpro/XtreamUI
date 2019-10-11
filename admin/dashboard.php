@@ -495,10 +495,10 @@ include "header.php";
                 $(".output-flow .progress-bar").css("width", rCapacity.toString() + "%");
                 $(".output-flow .sr-only").html(rCapacity.toString() + "%");
                 // Active Streams
-                var rCapacity = Math.ceil((data.total_running_streams / data.total_streams) * 100);
+                var rCapacity = Math.ceil((data.active_streams / data.offline_streams) * 100);
                 if (isNaN(rCapacity)) { rCapacity = 0; }
-                $(".active-streams .entry").html($.number(data.total_running_streams, 0));
-                $(".active-streams .entry-percentage").html($.number(data.total_streams, 0));
+                $(".active-streams .entry").html($.number(data.active_streams, 0));
+                $(".active-streams .entry-percentage").html($.number(data.offline_streams, 0));
                 $(".active-streams .progress-bar").prop("aria-valuenow", rCapacity);
                 $(".active-streams .progress-bar").css("width", rCapacity.toString() + "%");
                 $(".active-streams .sr-only").html(rCapacity.toString() + "%");
