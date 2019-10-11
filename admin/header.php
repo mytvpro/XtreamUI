@@ -130,7 +130,7 @@
                                     <li><a href="#">Manage Group Members <i class="la la-exclamation-triangle"></i></a></li>
                                     <li class="separator"></li>
                                     <li><a href="#">Client Logs <i class="la la-exclamation-triangle"></i></a></li>
-                                    <li><a href="#">User Activity <i class="la la-exclamation-triangle"></i></a></li>
+                                    <li><a href="./user_activity.php">User Activity</a></li>
                                 </ul>
                             </li>
 
