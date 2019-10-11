@@ -323,12 +323,12 @@ include "header.php";
                                         <div class="col-6">
                                             <div class="text-right">
                                                 <h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
-                                                <p class="text-muted mb-1 text-truncate">Active Streams</p>
+                                                <p class="text-muted mb-1 text-truncate"><a href="./streams.php">Active Streams</a></p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mt-3">
-                                        <h6 class="text-uppercase">Total Streams <span class="float-right entry-percentage">0</span></h6>
+                                        <h6 class="text-uppercase"><a href="#">Offline Streams</a> <span class="float-right entry-percentage">0</span></h6>
                                         <div class="progress progress-sm m-0">
                                             <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                                                 <span class="sr-only">0%</span>
