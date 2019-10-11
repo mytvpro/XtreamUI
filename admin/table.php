@@ -26,7 +26,7 @@ if ($_GET["id"] == "users") {
     $table = 'users';
     $get = $_GET["id"];
     $primaryKey = 'id';
-    $extraWhere = "";
+    $extraWhere = "`is_mag` = 0 AND `is_e2` = 0";
 
     $columns = array(
         array('db' => 'id', 'dt' => 0),
@@ -44,11 +44,11 @@ if ($_GET["id"] == "users") {
                     return "BANNED";
                 } else {
                     if ($row["enabled"] == 0) {
-                        return "DISABLED";
+                        return '<i class="text-danger fas fa-circle">';
                     } else if (($row["exp_date"]) && ($row["exp_date"] < time())) {
-                        return "EXPIRED";
+                        return '<i class="text-warning far fa-circle">';
                     } else {
-                        return "ACTIVE";
+                        return '<i class="text-success fas fa-circle">';
                     }
                 }
             }
@@ -56,7 +56,11 @@ if ($_GET["id"] == "users") {
         array('db' => 'id', 'dt' => 5,
             'formatter' => function( $d, $row ) {
                 global $rActivity;
-                return Array(false => "OFFLINE", true => "ONLINE")[isset($rActivity[intval($d)])];
+                if (isset($rActivity[intval($d)])) {
+                    return '<i class="text-success fas fa-circle">';
+                } else {
+                    return '<i class="text-warning far fa-circle">';
+                }
             }
         ),
         array('db' => 'exp_date', 'dt' => 6,
@@ -86,8 +90,7 @@ if ($_GET["id"] == "users") {
                 }
             }
         ),
-        array('db' => 'admin_notes', 'dt' => 9),
-        array('db' => 'id', 'dt' => 10,
+        array('db' => 'id', 'dt' => 9,
             'formatter' => function( $d, $row ) {
                 $rButtons = '<button type="button" class="btn btn-outline-secondary waves-effect waves-light btn-xs" onClick="download(\''.$row["username"].'\', \''.$row["password"].'\');""><i class="mdi mdi-download"></i></button>';
                 $rButtons .= '<a href="./user.php?id='.$d.'"><button type="button" class="btn btn-outline-info waves-effect waves-light btn-xs"><i class="mdi mdi-pencil-outline"></i></button></a>';
@@ -108,64 +111,6 @@ if ($_GET["id"] == "users") {
         array('db' => 'enabled', 'hide' => true),
         array('db' => 'exp_date', 'hide' => true),
     );
-}else if ($_GET["id"] == "user_activity") {
-    $rRegisteredUsers = getRegisteredUsernames();
-    $rChannels = getChannels();
-    $rStreamingServers = getStreamingServers();
-
-    $rActivity = Array();
-    $result = $db->query("SELECT `user_id`, COUNT(`activity_id`) AS `count` FROM `user_activity_now` GROUP BY `user_id`;");
-    if (($result) && ($result->num_rows > 0)) {
-        while ($row = $result->fetch_assoc()) {
-            $rActivity[$row["user_id"]] = intval($row["count"]);
-        }
-    }
-
-    $table = 'user_activity_now';
-    $get = $_GET["activity_id"];
-    $primaryKey = 'activity_id';
-    $extraWhere = "";
-    $columns = array(
-        array('db' => 'user_id', 'dt' => 0,
-            'formatter' => function( $d, $row ) {
-                return "<a href='./user.php?id=".$d."'>".getUser(intval($d))["username"]."</a>";
-            }
-        ),
-        array('db' => 'stream_id', 'dt' => 1,
-            'formatter' => function( $d, $row ) {
-                return "<a href='./stream.php?id=".$d."'>".getChannelsByID(intval($d))["stream_display_name"]."</a>";
-            }
-        ),
-        array('db' => 'server_id', 'dt' => 2,
-            'formatter' => function( $d, $row ) {
-                return "<a href='./server.php?id=".$d."'>".getStreamingServersByID(intval($d))["server_name"]."</a>";
-            }
-        ),
-        array('db' => 'user_ip', 'dt' => 3,
-            'formatter' => function( $d, $row ) {
-                if ($d) { return "<a target='_blank' href='https://www.ip-tracker.org/locator/ip-lookup.php?ip=".$d."'>".$d."</a>"; }
-            }
-        ),
-        #array('db' => 'stream_id', 'dt' => 4),
-        array('db' => 'user_id', 'dt' => 4,
-            'formatter' => function( $d, $row ) {
-                global $rActivity;
-                $max = getUser(intval($d))["max_connections"];
-                if ($max == 0) {
-                    $max = "&infin;";
-                }
-                return $rActivity[intval($d)]." / ".$max;
-            }
-        ),
-        array('db' => 'geoip_country_code', 'dt' => 5,
-            'formatter' => function( $d, $row ) {
-                
-                return "<img src='https://www.ip-tracker.org/images/ip-flags/".strtolower($d).".png'> (".$d.")</img>";
-            }
-        ),
-       
-    );
-
 } else if ($_GET["id"] == "reg_users") {
     $rMemberGroups = getMemberGroups();
     
@@ -187,12 +132,20 @@ if ($_GET["id"] == "users") {
         ),
         array('db' => 'status', 'dt' => 5,
             'formatter' => function( $d, $row ) {
-                return Array(0 => "DISABLED", 1 => "ENABLED")[$d];
+                if ($d == 1) {
+                    return '<i class="text-success fas fa-circle">';
+                } else {
+                    return '<i class="text-warning far fa-circle">';
+                }
             }
         ),
         array('db' => 'verified', 'dt' => 6,
             'formatter' => function( $d, $row ) {
-                return Array(0 => "UNVERIFIED", 1 => "VERIFIED")[$d];
+                if ($d == 1) {
+                    return '<i class="text-success fas fa-circle">';
+                } else {
+                    return '<i class="text-warning far fa-circle">';
+                }
             }
         ),
         array('db' => 'last_login', 'dt' => 7,
@@ -417,7 +370,7 @@ if ($_GET["id"] == "users") {
         array('db' => 'stream_display_name', 'dt' => 1),
         array('db' => 'id', 'dt' => 2,
             'formatter' => function( $d, $row) {
-                return '<a href="./addmovie.php?id='.$d.'"><button type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit Movie" class="btn btn-outline-info waves-effect waves-light btn-xs"><i class="mdi mdi-pencil-outline"></i></button></a>';
+                return '<a href="./movie.php?id='.$d.'"><button type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit Movie" class="btn btn-outline-info waves-effect waves-light btn-xs"><i class="mdi mdi-pencil-outline"></i></button></a>';
             }
         )
     );
@@ -442,8 +395,8 @@ if ($_GET["id"] == "users") {
         ),
         array('db' => 'id', 'dt' => 3,
             'formatter' => function( $d, $row) {
-                return '<button type="button" style="display: none;" class="btn-remove btn btn-outline-danger waves-effect waves-light btn-xs" onClick="toggleBouquet('.$d.', \'stream\');"><i class="mdi mdi-minus"></i></button>
-                <button type="button" style="display: none;" class="btn-add btn btn-outline-info waves-effect waves-light btn-xs" onClick="toggleBouquet('.$d.', \'stream\');"><i class="mdi mdi-plus"></i></button>';
+                return '<button type="button" style="display: none;" class="btn-remove btn btn-outline-danger waves-effect waves-light btn-xs" onClick="toggleBouquet('.$d.', \'vod\');"><i class="mdi mdi-minus"></i></button>
+                <button type="button" style="display: none;" class="btn-add btn btn-outline-info waves-effect waves-light btn-xs" onClick="toggleBouquet('.$d.', \'vod\');"><i class="mdi mdi-plus"></i></button>';
             }
         )
     );
@@ -676,7 +629,7 @@ class SSP {
         $limit = SSP::limit( $request, $columns );
         $order = SSP::order( $request, $columns, $joinQuery );
         $where = SSP::filter( $request, $columns, $bindings, $joinQuery, $table);
-        // IF Extra where set then set and prepare query
+		// IF Extra where set then set and prepare query
         if($extraWhere)
             $extraWhere = ($where) ? ' AND '.$extraWhere : ' WHERE '.$extraWhere;
         $groupBy = ($groupBy) ? ' GROUP BY '.$groupBy .' ' : '';
@@ -685,22 +638,22 @@ class SSP {
         if($joinQuery){
             $col = SSP::pluck($columns, 'db', $joinQuery);
             $query =  "SELECT SQL_CALC_FOUND_ROWS ".implode(", ", $col)."
-             $joinQuery
-             $where
-             $extraWhere
-             $groupBy
+			 $joinQuery
+			 $where
+			 $extraWhere
+			 $groupBy
        $having
-             $order
-             $limit";
+			 $order
+			 $limit";
         }else{
             $query =  "SELECT SQL_CALC_FOUND_ROWS `".implode("`, `", SSP::pluck($columns, 'db'))."`
-             FROM `$table`
-             $where
-             $extraWhere
-             $groupBy
+			 FROM `$table`
+			 $where
+			 $extraWhere
+			 $groupBy
        $having
-             $order
-             $limit";
+			 $order
+			 $limit";
         }
         $data = SSP::sql_exec( $db, $bindings,$query);
         // Data set length after filtering
@@ -711,7 +664,7 @@ class SSP {
         // Total data set length
         $resTotalLength = SSP::sql_exec( $db,
             "SELECT COUNT(`{$primaryKey}`)
-             FROM   `$table`"
+			 FROM   `$table`"
         );
         $recordsTotal = $resTotalLength[0][0];
         /*
