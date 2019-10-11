@@ -181,8 +181,12 @@ if (isset($_GET["action"])) {
             $return["total_users"] = $result->num_rows;
             $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` > 1 AND `stream_id` IN (SELECT `id` FROM `streams` WHERE `type` = 5);");
             $return["active_series_streams"] = $result->num_rows;
+            $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` = -1 `stream_id` IN (SELECT `id` FROM `streams` WHERE `type` = 5);");
+            $return["offline_series_streams"] = $result->num_rows;
             $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` > 1 AND `stream_id` IN (SELECT `id` FROM `streams` WHERE `type` = 2);");
             $return["active_movie_streams"] = $result->num_rows;
+            $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` = -1 `stream_id` IN (SELECT `id` FROM `streams` WHERE `type` = 2);");
+            $return["offline_series_streams"] = $result->num_rows;
             $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` > 1 and `parent_id` IS NOT NULL;");
             $return["active_live_streams"] = $result->num_rows;
             $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` = -1 AND `parent_id` IS NOT NULL;");
@@ -191,6 +195,8 @@ if (isset($_GET["action"])) {
             $return["total_offline_streams"] = $result->num_rows;
             $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` > 1;"); 
             $return["total_active_streams"] = $result->num_rows;
+            $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `server_id` > 1;"); 
+            $return["total_streams"] = $result->num_rows;
             $return["network_guaranteed_speed"] = $rServers[$rServerID]["network_guaranteed_speed"];
         } else {
             $rUptime = 0;
@@ -224,8 +230,12 @@ if (isset($_GET["action"])) {
                 $return["total_users"] = $result->num_rows;
                 $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` > 1 AND `stream_id` IN (SELECT `id` FROM `streams` WHERE `type` = 5);");
                 $return["active_series_streams"] = $result->num_rows;
+                $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` = -1 `stream_id` IN (SELECT `id` FROM `streams` WHERE `type` = 5);");
+                $return["offline_series_streams"] = $result->num_rows;
                 $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` > 1 AND `stream_id` IN (SELECT `id` FROM `streams` WHERE `type` = 2);");
                 $return["active_movie_streams"] = $result->num_rows;
+                $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` = -1 `stream_id` IN (SELECT `id` FROM `streams` WHERE `type` = 2);");
+                $return["offline_series_streams"] = $result->num_rows;
                 $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` > 1 and `parent_id` IS NOT NULL;");
                 $return["active_live_streams"] = $result->num_rows;
                 $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` = -1 AND `parent_id` IS NOT NULL;");
@@ -234,6 +244,8 @@ if (isset($_GET["action"])) {
                 $return["total_offline_streams"] = $result->num_rows;
                 $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` > 1;"); 
                 $return["total_active_streams"] = $result->num_rows;
+                $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `server_id` > 1;"); 
+                $return["total_streams"] = $result->num_rows;
                 $return["network_guaranteed_speed"] += $rServers[$rServerID]["network_guaranteed_speed"];
             }
             $return["mem"] = intval($return["mem"] / count($rServers));
