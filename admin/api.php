@@ -179,7 +179,7 @@ if (isset($_GET["action"])) {
             $return["online_users"] = $result->num_rows;
             $result = $db->query("SELECT `activity_id` FROM `user_activity_now` GROUP BY `user_id`;");
             $return["total_users"] = $result->num_rows;
-            $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` > '1';");
+            $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` IS NOT NULL AND `pid` != '1' `pid` != '0';");
             $return["active_streams"] = $result->num_rows;
             $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` = '-1';");
             $return["offline_streams"] = $result->num_rows;
@@ -216,7 +216,7 @@ if (isset($_GET["action"])) {
                 $return["online_users"] += $result->num_rows;
                 $result = $db->query("SELECT `activity_id` FROM `user_activity_now` GROUP BY `user_id`;");
                 $return["total_users"] = $result->num_rows;
-                $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` > '1';");
+                $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` IS NOT NULL AND `pid` != '1' `pid` != '0';");
                 $return["active_streams"] = $result->num_rows;
                 $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` = '-1';");
                 $return["offline_streams"] = $result->num_rows;
