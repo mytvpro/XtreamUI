@@ -40,8 +40,13 @@
 
                         <li class="dropdown notification-list">
                             <!-- Mobile menu toggle-->
+<<<<<<< HEAD
                             <a class="navbar-toggle nav-link text-white">
                                 <div class="lines">
+=======
+                            <a class="navbar-toggle nav-link">
+                                <div class="lines text-white">
+>>>>>>> xtreamui/master
                                     <span></span>
                                     <span></span>
                                     <span></span>
@@ -83,13 +88,18 @@
                 </div>
             </div>
             <!-- end Topbar -->
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> xtreamui/master
             <div class="topbar-menu">
                 <div class="container-fluid">
                     <div id="navigation">
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
 
+<<<<<<< HEAD
                             <li class="has-submenu">
                                 <a href="#"><i class="la la-dashboard"></i>Dashboard <div class="arrow-down"></div></a>
                                 <ul class="submenu megamenu">
@@ -107,15 +117,26 @@
                                         </ul>
                                     </li>
                                 </ul>
+=======
+                            <li>
+                                <a href="./dashboard.php"><i class="la la-dashboard"></i>Dashboard</a>
+>>>>>>> xtreamui/master
                             </li>
 
                             <li class="has-submenu">
                                 <a href="#"><i class="la la-server"></i>Servers <div class="arrow-down"></div></a>
                                 <ul class="submenu">
                                     <li><a href="./server.php">Add Server</a></li>
+<<<<<<< HEAD
                                     <li><a href="./servers.php">Manage Servers</a></li>
                                     <li class="separator"></li>
                                     <li><a href="#">Live Connections <i class="la la-exclamation-triangle"></i></a></li>
+=======
+                                    <li><a href="./install_server.php">Install Load Balancer</a></li>
+                                    <li><a href="./servers.php">Manage Servers</a></li>
+                                    <li class="separator"></li>
+                                    <li><a href="./live_connections.php">Live Connections</a></li>
+>>>>>>> xtreamui/master
                                 </ul>
                             </li>
 
@@ -130,6 +151,7 @@
                                     <li><a href="#">Manage Group Members <i class="la la-exclamation-triangle"></i></a></li>
                                     <li class="separator"></li>
                                     <li><a href="#">Client Logs <i class="la la-exclamation-triangle"></i></a></li>
+<<<<<<< HEAD
                                     <li><a href="./user_activity.php">User Activity</a></li>
                                 </ul>
                             </li>
@@ -148,6 +170,27 @@
 
                             <!-- Reseller coming in later release -->
 
+=======
+                                </ul>
+                            </li>
+                            
+                            <li class="has-submenu">
+                                <a href="#"> <i class="la la-tablet"></i>Devices <div class="arrow-down"></div></a>
+                                <ul class="submenu">
+                                    <li><a href="./user.php?mag">Add MAG User</a></li>
+                                    <li><a href="./mag.php">Link MAG User</a></li>
+                                    <li><a href="./mags.php">Manage MAG Devices</a></li>
+                                    <li><a href="./mag_events.php">Manage MAG Events</a></li>
+                                    <li class="separator"></li>
+                                    <li><a href="./user.php?e2">Add Enigma User</a></li>
+                                    <li><a href="./enigma.php">Link MAG User</a></li>
+                                    <li><a href="./enigmas.php">Manage Enigma Devices</a></li>
+                                </ul>
+                            </li>
+                            
+                            <!-- Reseller coming in later release -->
+                            
+>>>>>>> xtreamui/master
                             <!-- <li class="has-submenu">
                                 <a href="#"> <i class="la la-briefcase"></i>Packages <div class="arrow-down"></div></a>
                                 <ul class="submenu">
@@ -155,7 +198,11 @@
                                     <li><a href="#">Manage Packages <i class="la la-exclamation-triangle"></i></a></li>
                                 </ul>
                             </li> -->
+<<<<<<< HEAD
 
+=======
+                            
+>>>>>>> xtreamui/master
                             <li class="has-submenu">
                                 <a href="#"> <i class="la la-video-camera"></i>VOD <div class="arrow-down"></div></a>
                                 <ul class="submenu">
@@ -172,7 +219,11 @@
                                     <li><a href="#">Manage TV Episodes <i class="la la-exclamation-triangle"></i></a></li>
                                 </ul>
                             </li>
+<<<<<<< HEAD
 
+=======
+                            
+>>>>>>> xtreamui/master
                             <li class="has-submenu">
                                 <a href="#"> <i class="la la-tasks"></i>Bouquets <div class="arrow-down"></div></a>
                                 <ul class="submenu">
@@ -180,7 +231,11 @@
                                     <li><a href="./bouquets.php">Manage Bouquets</a></li>
                                 </ul>
                             </li>
+<<<<<<< HEAD
 
+=======
+                            
+>>>>>>> xtreamui/master
                             <li class="has-submenu">
                                 <a href="#"> <i class="mdi mdi-television-guide"></i>EPG <div class="arrow-down"></div></a>
                                 <ul class="submenu">
@@ -193,11 +248,18 @@
                                 <a href="#"> <i class="la la-play-circle-o"></i>Streams <div class="arrow-down"></div></a>
                                 <ul class="submenu">
                                     <li><a href="./stream.php">Add Stream</a></li>
+<<<<<<< HEAD
+=======
+                                    <li><a href="./stream.php?import">Import Streams</a></li>
+>>>>>>> xtreamui/master
                                     <?php if (count($rCategories) > 0) { ?>
                                     <li><a href="#" data-toggle="modal" data-target="#streamCategories">Manage Streams</a></li>
                                     <?php } ?>
                                     <li><a href="./streams.php">Manage All Streams</a></li>
+<<<<<<< HEAD
                                     <li><a href="./import.php">Import Streams</a></li>
+=======
+>>>>>>> xtreamui/master
                                     <li class="separator"></li>
                                     <li><a href="./stream_category.php">Add Stream Category</a></li>
                                     <li><a href="./stream_categories.php">Manage Stream Categories</a></li>
@@ -244,4 +306,8 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
         </div>
+=======
+        </div>
+>>>>>>> xtreamui/master
