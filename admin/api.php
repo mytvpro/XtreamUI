@@ -236,7 +236,7 @@ if (isset($_GET["action"])) {
                 $return["active_movie_streams"] = $result->num_rows;
                 $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` = -1 `stream_id` IN (SELECT `id` FROM `streams` WHERE `type` = 5);");
                 $return["offline_series_streams"] = $result->num_rows;
-                $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` > 1 and `parent_id` IS NOT NULL;");
+                $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` = -1 `stream_id` IN (SELECT `id` FROM `streams` WHERE `type` = 1);");
                 $return["active_live_streams"] = $result->num_rows;
                 $result = $db->query("SELECT `server_stream_id` FROM `streams_sys` WHERE `server_id` = ".$rServerID." AND `pid` = -1 AND `parent_id` IS NOT NULL;");
                 $return["offline_live_streams"] = $result->num_rows;
